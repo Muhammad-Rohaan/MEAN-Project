@@ -25,6 +25,40 @@
     </div>
 
     <div class="form-group">
+      <label for="userType">User Type</label>
+      <select id="userType" formControlName="userType">
+        <option *ngFor="let type of userTypes" [value]="type">{{ type | titlecase }}</option>
+      </select>
+    </div>
+
+    <div class="form-group" *ngIf="expenseForm.get('userType')?.value === 'institute'">
+      <label for="batch">Batch</label>
+      <input type="text" id="batch" formControlName="batch">
+    </div>
+
+    <div class="form-group" *ngIf="expenseForm.get('userType')?.value === 'institute'">
+      <label for="course">Course</label>
+      <input type="text" id="course" formControlName="course">
+    </div>
+
+    <div class="form-group" *ngIf="expenseForm.get('userType')?.value === 'institute'">
+      <label style="display: flex; gap: 8px; align-items: center;">
+        <input type="checkbox" formControlName="isFeePayment">
+        Is Fee Payment?
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="reminderDate">Reminder Date</label>
+      <input type="date" id="reminderDate" formControlName="reminderDate">
+    </div>
+
+    <div class="form-group">
+      <label for="reminderNote">Reminder Note</label>
+      <textarea id="reminderNote" formControlName="reminderNote" rows="2"></textarea>
+    </div>
+
+    <div class="form-group">
       <label for="description">Description</label>
       <textarea id="description" formControlName="description" rows="3"></textarea>
     </div>

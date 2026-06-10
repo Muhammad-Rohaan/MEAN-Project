@@ -35,4 +35,32 @@ export class ExpenseListComponent implements OnInit {
       });
     }
   }
+
+  exportToCSV(): void {
+    if (this.expenses.length === 0) return;
+    
+    const headers = ['Title', 'Amount', 'Category', 'Date', 'Description'];
+    const csvRows = this.expenses.map(exp => [
+      exp.title,
+      exp.amount.toString(),
+      exp.category,
+      new Date(exp.date).toLocaleDateString(),
+      exp.description || ''
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...csvRows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'expenses.csv');
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 }

@@ -1,14 +1,31 @@
 # Expense Tracker - MEAN Stack Application
 
-A fully functional Expense Tracker web application built with the MEAN (MongoDB, Express.js, Angular, Node.js) stack, following MVC architecture.
+A fully functional Expense Tracker web application built with the MEAN (MongoDB, Express.js, Angular, Node.js) stack, following MVC architecture with additional student and institute-specific features.
 
 ## Features
 
+### Core Features
 - Complete CRUD operations for managing expenses
-- Dashboard with expense metrics and recent transactions
-- Category-based expense breakdown
+- Interactive dashboard with:
+  - Pie chart for category breakdown
+  - Line chart for monthly spending trends
+  - Bar chart for category comparison
+  - Recent transactions list
+  - Key expense metrics
 - Responsive user interface
 - Input validation (client and server side)
+
+### Student-Specific Features
+- Educational expense categories (Tuition, Textbooks, Hostel Fees, etc.)
+- Student budget allocation and tracking
+- Scholarship/financial aid disbursement management
+- Shared expense splitting for roommates
+
+### Institute-Specific Features
+- Batch-wise fee payment tracking
+- Fee receipt generation
+- Revenue analytics by course/batch
+- Payment reminder support
 
 ## Project Structure
 
@@ -16,23 +33,37 @@ A fully functional Expense Tracker web application built with the MEAN (MongoDB,
 MEAN/
 ├── Backend/
 │   ├── Config/
-│   │   └── DbConfig.js      # MongoDB connection configuration
+│   │   └── DbConfig.js              # MongoDB connection configuration
 │   ├── Controllers/
-│   │   └── ExpenseController.js # Business logic for expenses
+│   │   ├── ExpenseController.js     # Business logic for expenses
+│   │   ├── StudentBudgetController.js # Budget management
+│   │   ├── ScholarshipController.js # Scholarship tracking
+│   │   ├── SharedExpenseController.js # Shared expenses
+│   │   └── FeeReceiptController.js  # Receipt generation
 │   ├── Models/
-│   │   └── Expense.js       # Mongoose schema and model for Expense
+│   │   ├── Expense.js               # Mongoose schema for Expense
+│   │   ├── StudentBudget.js         # Budget schema
+│   │   ├── Scholarship.js           # Scholarship schema
+│   │   ├── SharedExpense.js         # Shared expense schema
+│   │   └── FeeReceipt.js            # Receipt schema
 │   ├── Routes/
-│   │   └── ExpenseRoutes.js # REST API routes
-│   ├── app.js               # Express server configuration
-│   └── package.json         # Backend dependencies and scripts
+│   │   ├── ExpenseRoutes.js         # REST API routes for expenses
+│   │   ├── StudentBudgetRoutes.js   # Budget routes
+│   │   ├── ScholarshipRoutes.js     # Scholarship routes
+│   │   ├── SharedExpenseRoutes.js   # Shared expense routes
+│   │   └── FeeReceiptRoutes.js      # Receipt routes
+│   ├── app.js                       # Express server configuration
+│   └── package.json                 # Backend dependencies and scripts
 ├── Frontend/
 │   ├── src/
 │   │   ├── app/
-│   │   │   ├── components/  # Angular components
-│   │   │   │   ├── dashboard/
+│   │   │   ├── components/          # Angular components
+│   │   │   │   ├── dashboard/       # Dashboard with charts
 │   │   │   │   ├── expense-list/
-│   │   │   │   └── expense-form/
-│   │   │   ├── services/    # Angular services
+│   │   │   │   └── expense-form/    # Form with student/institute fields
+│   │   │   ├── services/            # Angular services for all endpoints
+│   │   │   │   ├── expense.interface.ts
+│   │   │   │   └── expense.service.ts
 │   │   │   └── app.component.*
 │   │   └── main.ts
 │   ├── package.json
@@ -90,29 +121,19 @@ Before running the application, ensure you have the following installed:
 ## API Endpoints
 
 ### Expense Endpoints
-
 | Method | Endpoint             | Description                              |
 |--------|----------------------|------------------------------------------|
-| GET    | /api/expenses        | Get all expenses (supports category, startDate, endDate query params) |
+| GET    | /api/expenses        | Get all expenses                         |
 | GET    | /api/expenses/:id    | Get a single expense by ID               |
 | POST   | /api/expenses        | Create a new expense                     |
 | PUT    | /api/expenses/:id    | Update an existing expense               |
 | DELETE | /api/expenses/:id    | Delete an expense                        |
 
-### Expense Object Structure
-
-```json
-{
-  "_id": "ObjectId",
-  "title": "string (required)",
-  "amount": "number (required, positive)",
-  "category": "string (required)",
-  "date": "Date (required)",
-  "description": "string (optional)",
-  "createdAt": "Date",
-  "updatedAt": "Date"
-}
-```
+### Additional Endpoints
+- `/api/budgets` - Student budget management
+- `/api/scholarships` - Scholarship and disbursement tracking
+- `/api/shared-expenses` - Shared expense splitting
+- `/api/fee-receipts` - Fee receipt generation
 
 ## Usage
 
@@ -121,6 +142,7 @@ Before running the application, ensure you have the following installed:
 3. Start the frontend server (port 4200)
 4. Open your browser and go to http://localhost:4200
 5. Use the navigation to add, view, edit, or delete expenses
+6. Select user type (student/institute) in the expense form to access specialized fields
 
 ## Technologies Used
 
@@ -136,3 +158,4 @@ Before running the application, ensure you have the following installed:
   - Angular Router
   - Angular Forms (Reactive Forms)
   - HttpClient
+  - Chart.js with ng2-charts

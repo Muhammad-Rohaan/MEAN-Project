@@ -1,6 +1,9 @@
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 16px;">
   <h1>Expenses</h1>
-  <a routerLink="/expenses/add" class="btn btn-primary">Add Expense</a>
+  <div style="display: flex; gap: 12px;">
+    <a routerLink="/expenses/add" class="btn btn-primary">Add Expense</a>
+    <button (click)="exportToCSV()" class="btn btn-primary">Export to CSV</button>
+  </div>
 </div>
 
 <div class="card">

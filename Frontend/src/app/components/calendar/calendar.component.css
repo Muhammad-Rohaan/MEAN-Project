@@ -1,0 +1,46 @@
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-day {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 8px;
+  min-height: 80px;
+  background: white;
+}
+
+.calendar-day.header {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  text-align: center;
+  min-height: auto;
+  padding: 10px;
+}
+
+.day-number {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.expense-dots {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #3f51b5;
+}

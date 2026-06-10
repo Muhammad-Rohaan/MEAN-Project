@@ -9,7 +9,7 @@ import { Expense } from '../../services/expense.interface';
 @Component({
   selector: 'app-expense-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './expense-form.component.html',
   styleUrl: './expense-form.component.css'
 })
@@ -18,7 +18,12 @@ export class ExpenseFormComponent implements OnInit {
   isEditMode = false;
   expenseId: string | null = null;
 
-  categories = ['Food', 'Transport', 'Entertainment', 'Shopping', 'Health', 'Other'];
+  categories = [
+    'Food', 'Transport', 'Entertainment', 'Shopping', 'Health', 'Other',
+    'Tuition', 'Textbooks', 'Course Materials', 'Hostel Fees',
+    'Coaching Fees', 'Exam Fees', 'Stationery'
+  ];
+  userTypes = ['student', 'institute', 'general'];
 
   constructor(
     private fb: FormBuilder,
@@ -31,7 +36,13 @@ export class ExpenseFormComponent implements OnInit {
       amount: [0, [Validators.required, Validators.min(0.01)]],
       category: ['', Validators.required],
       date: [new Date().toISOString().substring(0, 10), Validators.required],
-      description: ['']
+      description: [''],
+      userType: ['general'],
+      batch: [''],
+      course: [''],
+      isFeePayment: [false],
+      reminderDate: [''],
+      reminderNote: ['']
     });
   }
 
@@ -51,7 +62,13 @@ export class ExpenseFormComponent implements OnInit {
           amount: expense.amount,
           category: expense.category,
           date: new Date(expense.date).toISOString().substring(0, 10),
-          description: expense.description
+          description: expense.description,
+          userType: expense.userType,
+          batch: expense.batch,
+          course: expense.course,
+          isFeePayment: expense.isFeePayment,
+          reminderDate: expense.reminderDate ? new Date(expense.reminderDate).toISOString().substring(0, 10) : '',
+          reminderNote: expense.reminderNote || ''
         });
       },
       error: (err) => console.error('Error loading expense', err)
