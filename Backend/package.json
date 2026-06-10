@@ -1,0 +1,20 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "A MEAN Stack project for web engineering",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm run dev"
+  },
+  "keywords": [
+    "MEAN"
+  ],
+  "author": "Rohan, Ahmed",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mongodb": "^7.3.0",
+    "mongoose": "^9.7.0"
+  }
+}
