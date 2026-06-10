@@ -1,0 +1,32 @@
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+  <h1>Expenses</h1>
+  <a routerLink="/expenses/add" class="btn btn-primary">Add Expense</a>
+</div>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let expense of expenses">
+        <td>{{ expense.title }}</td>
+        <td>${{ expense.amount.toFixed(2) }}</td>
+        <td>{{ expense.category }}</td>
+        <td>{{ expense.date | date:'yyyy-MM-dd' }}</td>
+        <td>{{ expense.description || '-' }}</td>
+        <td>
+          <a [routerLink]="['/expenses/edit', expense._id]" class="btn btn-warning" style="padding: 5px 10px; font-size: 14px;">Edit</a>
+          <button (click)="deleteExpense(expense._id!)" class="btn btn-danger" style="padding: 5px 10px; font-size: 14px;">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
