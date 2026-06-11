@@ -17,28 +17,23 @@
 
 <div class="card">
   <h2>Category Breakdown</h2>
-  <div class="category-bars">
-    <div *ngFor="let cat of categories" class="category-row">
-      <span class="category-name">{{ cat }}</span>
-      <div class="category-bar-container">
-        <div 
-          class="category-bar" 
-          [style.width]="getPercentage(cat) + '%'"
-        ></div>
-      </div>
-      <span class="category-amount">Rs.{{ categoryBreakdown[cat].toFixed(2) }}</span>
-    </div>
+  <div class="chart-container">
+    <canvas baseChart
+      [data]="pieChartData"
+      [options]="pieChartOptions"
+      [type]="pieChartType">
+    </canvas>
   </div>
 </div>
 
 <div class="card">
   <h2>Monthly Spending Trends</h2>
-  <div class="monthly-chart">
-    <div *ngFor="let data of monthlyData" class="monthly-bar">
-      <div class="bar-rect" [style.height]="getBarHeight(data.amount)"></div>
-      <div class="bar-label">{{ data.month }}</div>
-      <div class="bar-value">Rs.{{ data.amount.toFixed(0) }}</div>
-    </div>
+  <div class="chart-container">
+    <canvas baseChart
+      [data]="lineChartData"
+      [options]="lineChartOptions"
+      [type]="lineChartType">
+    </canvas>
   </div>
 </div>
 
