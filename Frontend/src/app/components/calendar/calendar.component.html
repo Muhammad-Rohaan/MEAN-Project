@@ -26,7 +26,7 @@
         <div 
           *ngFor="let exp of getExpensesForDate(day)" 
           class="dot"
-          [title]="exp.title + ': $' + exp.amount"
+          [title]="exp.title + ': Rs.' + exp.amount"
         ></div>
       </div>
     </div>

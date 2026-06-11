@@ -3,7 +3,7 @@
 <div class="metrics-grid">
   <div class="metric-card">
     <h3>Total Expenses</h3>
-    <p>${{ totalExpenses.toFixed(2) }}</p>
+    <p>Rs.{{ totalExpenses.toFixed(2) }}</p>
   </div>
   <div class="metric-card">
     <h3>Number of Expenses</h3>
@@ -26,7 +26,7 @@
           [style.width]="getPercentage(cat) + '%'"
         ></div>
       </div>
-      <span class="category-amount">${{ categoryBreakdown[cat].toFixed(2) }}</span>
+      <span class="category-amount">Rs.{{ categoryBreakdown[cat].toFixed(2) }}</span>
     </div>
   </div>
 </div>
@@ -37,7 +37,7 @@
     <div *ngFor="let data of monthlyData" class="monthly-bar">
       <div class="bar-rect" [style.height]="getBarHeight(data.amount)"></div>
       <div class="bar-label">{{ data.month }}</div>
-      <div class="bar-value">${{ data.amount.toFixed(0) }}</div>
+      <div class="bar-value">Rs.{{ data.amount.toFixed(0) }}</div>
     </div>
   </div>
 </div>
@@ -56,7 +56,7 @@
     <tbody>
       <tr *ngFor="let expense of recentExpenses">
         <td>{{ expense.title }}</td>
-        <td>${{ expense.amount.toFixed(2) }}</td>
+        <td>Rs.{{ expense.amount.toFixed(2) }}</td>
         <td>{{ expense.category }}</td>
         <td>{{ expense.date | date:'yyyy-MM-dd' }}</td>
       </tr>
